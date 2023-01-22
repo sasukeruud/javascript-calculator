@@ -1,3 +1,82 @@
+html,body{
+    height: 100%;
+}
+
+button{
+    padding: 10px;
+    border-radius: 12px;
+    margin: 6px;
+}
+
+.main{
+    position: relative;
+    top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.calculator{
+    background-color: darkcyan;
+    padding: 10px;
+}
+
+.display{
+    width: auto;
+    margin-bottom: 5px;
+    background-color: white;
+    text-align: right;
+}
+
+.input-buttons{
+    display: grid;
+}
+
+.button-one{
+    grid-row-start: 3;
+}
+
+.button-two{
+    grid-row-start: 3;
+}
+
+.button-three{
+    grid-row-start: 3;
+}
+
+.button-pluss{
+    grid-row-start: 3;
+}
+
+.button-four{
+    grid-row-start: 2;
+}
+
+.button-five{
+    grid-row-start: 2;
+}
+
+.button-six{
+    grid-row-start: 2;
+}
+
+.button-minus{
+    grid-row-start: 2;
+}
+
+.button-muliply{
+    grid-row-start: 1;
+    grid-column-start: 4;
+}
+
+.button-zero{
+    grid-column-start: 2;
+}
+
+.button-decimal{
+    grid-row: 4;
+}
+
 .footer{
     position: fixed;
     bottom: 0;
