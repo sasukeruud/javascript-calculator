@@ -18,11 +18,13 @@ button{
 
 .calculator{
     background-color: darkcyan;
+    border-radius: 6px;
     padding: 10px;
 }
 
 .display{
     width: auto;
+    border-radius: 6px;
     margin-bottom: 5px;
     background-color: white;
     text-align: right;
