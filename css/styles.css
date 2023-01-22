@@ -24,10 +24,23 @@ button{
     padding: 10px;
 }
 
+.top-part{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.button-clear{
+    font-size: 10px;
+    padding: 3px;
+} 
+
 .display{
     width: auto;
+    flex-grow: 1;
+    height: 20px;
     border-radius: 6px;
-    margin-bottom: 5px;
     background-color: white;
     text-align: right;
 }
