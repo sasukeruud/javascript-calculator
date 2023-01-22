@@ -29,3 +29,24 @@ const multiply = (x,y) => x * y;
  * @returns returns the value after dividation have been done
  */
 const divide = (x,y) => x / y;
+
+const operate = (operator,x,y) => {
+    let answer = 0;
+    switch(operator){
+        case "+": 
+            answer = add(x,y);
+            break;
+        case "-": 
+            answer = subtract(x,y);
+            break;
+        case "*":
+            answer = multiply(x,y);
+            break;
+        case "/": 
+            answer = divide(x,y);
+            break;
+
+    }
+
+    console.log(answer);
+}
