@@ -30,6 +30,13 @@ const multiply = (x,y) => x * y;
  */
 const divide = (x,y) => x / y;
 
+/**
+ * Function to decide and calculate a mathimatical equation.
+ * Only the four standard operations.
+ * @param {*operator a mathimatical operator[+,-,*,/]} operator 
+ * @param {*x first number} x 
+ * @param {*y second number} y 
+ */
 const operate = (operator,x,y) => {
     let answer = 0;
     switch(operator){
