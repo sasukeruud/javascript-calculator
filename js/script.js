@@ -65,7 +65,7 @@ const operate = (operator,x,y) => {
             break;
 
     }
-}
+};
 
 /**
  * Function to clear display
@@ -83,7 +83,17 @@ const updateDisplay = (number) => {
         nullDisplay = false;
     }
     displayText.textContent == 0 ? displayText.textContent = number : displayText.textContent = displayText.textContent + number;
-}
+};
+
+/**
+ * Function for solving the equation and display the solution of the equation.
+ * Changes the display value to the solution.
+ */
+const solve = () => {
+    numberTwo = displayText.textContent;
+    operate(operation,+numberOne,+numberTwo);
+    displayText.textContent = numberOne;
+};
 
 numberButtons.forEach((button) => button.addEventListener(`click`, (e) => updateDisplay(button.textContent)));
 
@@ -107,17 +117,10 @@ clearButton.addEventListener(`click`,(e) =>{
     operation = ``;
 });
 
-/**
- * Event listner for equal button to display the solution of the equation.
- * Changes the display value to the solution.
- */
-equalButton.addEventListener(`click`, (e) => {
-    numberTwo = displayText.textContent;
-    operate(operation,+numberOne,+numberTwo);
-    displayText.textContent = numberOne;
-});
+equalButton.addEventListener(`click`, solve);
 
 window.addEventListener(`keydown`, (e) =>{
+    console.log(e.key);
     switch(e.key){
         case "1":
         case "2":
@@ -130,6 +133,9 @@ window.addEventListener(`keydown`, (e) =>{
         case "9":
         case "0":
             updateDisplay(e.key);
+            break;
+        case "Enter":
+            solve();
             break;
         default: break;
     }
