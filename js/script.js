@@ -6,6 +6,7 @@ let noNumber = 0;
 let numberOne = 0;
 let numberTwo = 0;
 let operation = ``;
+let nullDisplay = true;
 
 /**
  * Addition function
@@ -71,8 +72,13 @@ const operate = (operator,x,y) => {
  */
 const clearDisplay = () => displayText.textContent = noNumber;
 
-numberButtons.forEach((button) => button.addEventListener(`click`, (e) => displayText.textContent == 0 ? displayText.textContent = button.textContent : 
-                                                                            displayText.textContent = displayText.textContent + button.textContent));
+numberButtons.forEach((button) => button.addEventListener(`click`, (e) => {
+    if(nullDisplay){
+        displayText.textContent = 0;
+        nullDisplay = false;
+    } 
+    displayText.textContent == 0 ? displayText.textContent = button.textContent : displayText.textContent = displayText.textContent + button.textContent
+    }));
 
 operationsButtons.forEach((button) => button.addEventListener(`click`, (e) => {
     numberOne == 0 ? numberOne = displayText.textContent : numberTwo = displayText.textContent;
@@ -80,7 +86,8 @@ operationsButtons.forEach((button) => button.addEventListener(`click`, (e) => {
         operate(operation,+numberOne,+numberTwo);
     }
     operation = button.textContent;
-    displayText.textContent = noNumber;
+    displayText.textContent = numberOne;
+    nullDisplay = true;
 }));
 
 /**
