@@ -92,20 +92,23 @@ const updateDisplay = (number) => {
 const solve = () => {
     numberTwo = displayText.textContent;
     operate(operation,+numberOne,+numberTwo);
+    operation = ``;
     displayText.textContent = numberOne;
 };
 
-numberButtons.forEach((button) => button.addEventListener(`click`, (e) => updateDisplay(button.textContent)));
-
-operationsButtons.forEach((button) => button.addEventListener(`click`, (e) => {
+const operationInput = (_operation) => {
     numberOne == 0 ? numberOne = displayText.textContent : numberTwo = displayText.textContent;
     if(numberOne != 0 && numberTwo != 0){
         operate(operation,+numberOne,+numberTwo);
     }
-    operation = button.textContent;
+    operation = _operation;
     displayText.textContent = numberOne;
     nullDisplay = true;
-}));
+}
+
+numberButtons.forEach((button) => button.addEventListener(`click`, (e) => updateDisplay(button.textContent)));
+
+operationsButtons.forEach((button) => button.addEventListener(`click`, (e) => operationInput(button.textContent)));
 
 /**
  * Adds event to null out what is writen in the variables
@@ -133,6 +136,12 @@ window.addEventListener(`keydown`, (e) =>{
         case "9":
         case "0":
             updateDisplay(e.key);
+            break;
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            operationInput(e.key);
             break;
         case "Enter":
             solve();
