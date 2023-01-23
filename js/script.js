@@ -1,3 +1,12 @@
+const displayText = document.querySelector(`.display`);
+const numberButtons = document.querySelectorAll(`.number`);
+const clearButton = document.querySelector(`.button-clear`);
+const operationsButtons = document.querySelectorAll(`.operation`);
+let noNumber = 0;
+let numberOne = 0;
+let numberTwo = 0;
+let operation = ``;
+
 /**
  * Addition function
  * @param {*x first number} x 
@@ -41,19 +50,47 @@ const operate = (operator,x,y) => {
     let answer = 0;
     switch(operator){
         case "+": 
-            answer = add(x,y);
+            numberOne = add(x,y);
             break;
         case "-": 
-            answer = subtract(x,y);
+            numberOne = subtract(x,y);
             break;
         case "*":
-            answer = multiply(x,y);
+            numberOne = multiply(x,y);
             break;
         case "/": 
-            answer = divide(x,y);
+            numberOne = divide(x,y);
             break;
 
     }
-
-    console.log(answer);
 }
+
+/**
+ * Function to clear display
+ * @returns nothing
+ */
+const clearDisplay = () => displayText.textContent = noNumber;
+
+numberButtons.forEach((button) => button.addEventListener(`click`, (e) => displayText.textContent == 0 ? displayText.textContent = button.textContent : 
+                                                                            displayText.textContent = displayText.textContent + button.textContent));
+
+operationsButtons.forEach((button) => button.addEventListener(`click`, (e) => {
+    numberOne == 0 ? numberOne = displayText.textContent : numberTwo = displayText.textContent;
+    if(numberOne != 0 && numberTwo != 0){
+        operate(operation,+numberOne,+numberTwo);
+    }
+    operation = button.textContent;
+    displayText.textContent = noNumber;
+}));
+
+/**
+ * Adds event to null out what is writen in the variables
+ */
+clearButton.addEventListener(`click`,(e) =>{
+    clearDisplay();
+    numberOne = 0;
+    numberTwo = 0;
+    operation = ``;
+});
+
+clearDisplay();
