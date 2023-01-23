@@ -3,6 +3,7 @@ const numberButtons = document.querySelectorAll(`.number`);
 const clearButton = document.querySelector(`.button-clear`);
 const operationsButtons = document.querySelectorAll(`.operation`);
 const equalButton = document.querySelector(`.button-equal`);
+const decimalButton = document.querySelector(`.button-decimal`);
 
 let noNumber = 0;
 let numberOne = 0;
@@ -82,7 +83,7 @@ const updateDisplay = (number) => {
         displayText.textContent = 0;
         nullDisplay = false;
     }
-    displayText.textContent == 0 ? displayText.textContent = number : displayText.textContent = displayText.textContent + number;
+    displayText.textContent === `0` ? displayText.textContent = number : displayText.textContent = displayText.textContent + number;
 };
 
 /**
@@ -90,12 +91,17 @@ const updateDisplay = (number) => {
  * Changes the display value to the solution.
  */
 const solve = () => {
-    numberTwo = displayText.textContent;
-    operate(operation,+numberOne,+numberTwo);
+    operate(operation,+numberOne,+displayText.textContent);
     operation = ``;
     displayText.textContent = numberOne;
+    nullDisplay = true;
 };
 
+/**
+ * Function to get the number from the display and save which operation to use.
+ * If there is a second number solve for the operation that is stored in the code.
+ * @param {*_operation which mathimatical operation to do} _operation 
+ */
 const operationInput = (_operation) => {
     numberOne == 0 ? numberOne = displayText.textContent : numberTwo = displayText.textContent;
     if(numberOne != 0 && numberTwo != 0){
@@ -104,6 +110,16 @@ const operationInput = (_operation) => {
     operation = _operation;
     displayText.textContent = numberOne;
     nullDisplay = true;
+};
+
+/**
+ * Function to add on a decimal point to the display
+ */
+const decimalOperation = () =>{
+    if(!displayText.textContent.includes(`.`)) {
+        displayText.textContent = displayText.textContent + decimalButton.textContent;
+        nullDisplay = false;
+    }
 }
 
 numberButtons.forEach((button) => button.addEventListener(`click`, (e) => updateDisplay(button.textContent)));
@@ -122,8 +138,9 @@ clearButton.addEventListener(`click`,(e) =>{
 
 equalButton.addEventListener(`click`, solve);
 
+decimalButton.addEventListener(`click`, decimalOperation);
+
 window.addEventListener(`keydown`, (e) =>{
-    console.log(e.key);
     switch(e.key){
         case "1":
         case "2":
@@ -145,6 +162,9 @@ window.addEventListener(`keydown`, (e) =>{
             break;
         case "Enter":
             solve();
+            break;
+        case ".":
+            decimalOperation();
             break;
         default: break;
     }
