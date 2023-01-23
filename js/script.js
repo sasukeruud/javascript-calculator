@@ -73,13 +73,19 @@ const operate = (operator,x,y) => {
  */
 const clearDisplay = () => displayText.textContent = noNumber;
 
-numberButtons.forEach((button) => button.addEventListener(`click`, (e) => {
+/**
+ * Updated the display value. Either starts a new number or add trailing numbers to the display
+ * @param {*number number to add to display} number 
+ */
+const updateDisplay = (number) => {
     if(nullDisplay){
         displayText.textContent = 0;
         nullDisplay = false;
-    } 
-    displayText.textContent == 0 ? displayText.textContent = button.textContent : displayText.textContent = displayText.textContent + button.textContent
-    }));
+    }
+    displayText.textContent == 0 ? displayText.textContent = number : displayText.textContent = displayText.textContent + number;
+}
+
+numberButtons.forEach((button) => button.addEventListener(`click`, (e) => updateDisplay(button.textContent)));
 
 operationsButtons.forEach((button) => button.addEventListener(`click`, (e) => {
     numberOne == 0 ? numberOne = displayText.textContent : numberTwo = displayText.textContent;
@@ -109,6 +115,24 @@ equalButton.addEventListener(`click`, (e) => {
     numberTwo = displayText.textContent;
     operate(operation,+numberOne,+numberTwo);
     displayText.textContent = numberOne;
+});
+
+window.addEventListener(`keydown`, (e) =>{
+    switch(e.key){
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        case "0":
+            updateDisplay(e.key);
+            break;
+        default: break;
+    }
 });
 
 clearDisplay();
