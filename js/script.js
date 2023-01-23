@@ -2,6 +2,8 @@ const displayText = document.querySelector(`.display`);
 const numberButtons = document.querySelectorAll(`.number`);
 const clearButton = document.querySelector(`.button-clear`);
 const operationsButtons = document.querySelectorAll(`.operation`);
+const equalButton = document.querySelector(`.button-equal`);
+
 let noNumber = 0;
 let numberOne = 0;
 let numberTwo = 0;
@@ -48,7 +50,6 @@ const divide = (x,y) => x / y;
  * @param {*y second number} y 
  */
 const operate = (operator,x,y) => {
-    let answer = 0;
     switch(operator){
         case "+": 
             numberOne = add(x,y);
@@ -98,6 +99,16 @@ clearButton.addEventListener(`click`,(e) =>{
     numberOne = 0;
     numberTwo = 0;
     operation = ``;
+});
+
+/**
+ * Event listner for equal button to display the solution of the equation.
+ * Changes the display value to the solution.
+ */
+equalButton.addEventListener(`click`, (e) => {
+    numberTwo = displayText.textContent;
+    operate(operation,+numberOne,+numberTwo);
+    displayText.textContent = numberOne;
 });
 
 clearDisplay();
